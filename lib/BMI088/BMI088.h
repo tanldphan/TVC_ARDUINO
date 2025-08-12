@@ -20,7 +20,9 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#pragma once
+
+#ifndef BMI088_h
+#define BMI088_h
 
 #include "Arduino.h"
 #include "Wire.h"  // I2C library
@@ -410,3 +412,5 @@ class Bmi088 {
     bool writeFeatureConfig();  
     void updateFeatureConfig(uint8_t addr, uint8_t count, const uint16_t *data);    
 };
+
+#endif
