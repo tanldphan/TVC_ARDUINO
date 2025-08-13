@@ -1,14 +1,14 @@
 // Bosch BMI088 Shuttle Board 3.0 Flyer
 
 #include "imu.h"
-Bmi088 imu(SPI, CS_ACCEL, CS_GYRO);
+Bmi088 imu(SPI, IMU_CS_ACCEL, IMU_CS_GYRO);
 
 void imu_init()
 {
     Serial.begin(115200);
     SPI.begin();
-    pinMode(CS_ACCEL, OUTPUT); digitalWrite(CS_ACCEL, HIGH);
-    pinMode(CS_GYRO, OUTPUT);  digitalWrite(CS_GYRO, HIGH);
+    pinMode(IMU_CS_ACCEL, OUTPUT); digitalWrite(IMU_CS_ACCEL, HIGH);
+    pinMode(IMU_CS_GYRO, OUTPUT);  digitalWrite(IMU_CS_GYRO, HIGH);
 
     if (imu.begin() != 0)
     {
