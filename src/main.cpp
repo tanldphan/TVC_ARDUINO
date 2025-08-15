@@ -14,5 +14,5 @@ void loop()
 {
     imu_read();
     bps_read();
-    delay(1e3);
+    delay(1e3); // ms
 }

@@ -4,7 +4,7 @@
 
 SPIClass *theSPI = &SPI;
 
-Adafruit_BMP3XX bmp;
+Adafruit_BMP3XX bps;
 
 void bps_init()
 {
@@ -12,24 +12,30 @@ void bps_init()
     while (!Serial) {} // Wait for USB serial on Teensy
 
     // Init BMP388 over SPI
-    if (!bmp.begin_SPI(BPS_CS, BPS_SCL, BPS_SDO, BPS_SDA, 4000000))
+    if (!bps.begin_SPI(BPS_CS, BPS_SCK, BPS_SDO, BPS_SDA, 4e6))
     {
         Serial.println("BMP388 not found, check wiring!");
         while (1) {}
     }
 
 	// Configure oversampling / filtering
-	bmp.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
-	bmp.setPressureOversampling(BMP3_OVERSAMPLING_8X);
-	bmp.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3);
-	bmp.setOutputDataRate(BMP3_ODR_50_HZ);
+	bps.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
+	bps.setPressureOversampling(BMP3_OVERSAMPLING_8X);
+	bps.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3);
+	bps.setOutputDataRate(BMP3_ODR_50_HZ);
 
 	Serial.println("BMP388 initialized!");
 }
 
 void bps_read(void)
 {
-	bmp.performReading();
+	{
+		if (!bps.performReading())
+		Serial.printf("BPS reading failed");
+		return;
+	}
+	bps.performReading();
 	Serial.printf("Temp: %.2f, Pres: %.2f",
-	bmp.temperature, bmp.pressure);
+	bps.temperature, bps.pressure);
+	delay(5); // ms
 }
