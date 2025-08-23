@@ -4,6 +4,7 @@
 #include "imu.h"
 #include "bps.h"
 #include "xyservo.h"
+#include "utils.h"
 
 void setup()
 {
@@ -12,32 +13,14 @@ void setup()
     Serial.println("Booting...");
     SPI.begin();
 
-    if (!imu_init())
-    {
-        Serial.println("IMU failed to start!");
-    }
-    Serial.println("IMU started!");
-
-    if (!bps_init())
-    {
-        Serial.println("BPS failed to start!");
-    }
-    Serial.println("BPS started!");
-
-    if (!ServoControl::init())
-    {
-        Serial.println("SERVO failed to start!");
-    }
-    Serial.println("SERVO started!");
-    
-    Serial.println("Setup complete, entering loop");
-
+    initializer("IMU", IMU::init);
+    initializer("BPS", BPS::init);
 }
 
 void loop()
 {
-    imu_read();
-    bps_read();
+    IMU::read();
+    BPS::read();
     ServoControl::servo_x.write(90);
     ServoControl::servo_y.write(90);
     delay(1000);
