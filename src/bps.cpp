@@ -2,13 +2,13 @@
 
 #include "bps.h"
 
-namespace BPS
+namespace BPSmodule
 {
 	Adafruit_BMP3XX bps;
 	float p_start = 0.0f;
 	bool init()
 	{
-		if (!bps.begin_SPI(BPS_CS, BPS_SCK, BPS_SDO, BPS_SDA, 4000000)) return false;
+		if (!bps.begin_SPI(CS, SCK, SDO, SDA, 4000000)) return false;
 
 		bps.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
 		bps.setPressureOversampling(BMP3_OVERSAMPLING_8X);

@@ -13,14 +13,14 @@ void setup()
     Serial.println("Booting...");
     SPI.begin();
 
-    initializer("IMU", IMU::init);
-    initializer("BPS", BPS::init);
+    initializer("IMU", IMUmodule::init);
+    initializer("BPS", BPSmodule::init);
 }
 
 void loop()
 {
-    IMU::read();
-    BPS::read();
+    IMUmodule::read();
+    BPSmodule::read();
     ServoControl::servo_x.write(90);
     ServoControl::servo_y.write(90);
     delay(1000);

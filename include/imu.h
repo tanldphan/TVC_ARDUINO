@@ -5,13 +5,13 @@
 #include <stdint.h>
 #include "BMI088.h"
 
-namespace IMU
+namespace IMUmodule
 {
-    static constexpr uint8_t IMU_CS_ACCEL = 10;
-    static constexpr uint8_t IMU_CS_GYRO  = 9;
+    static constexpr uint8_t CS_ACCEL = 10;
+    static constexpr uint8_t CS_GYRO  = 9;
 
     extern Bmi088 imu;
-    
+
     bool init();
     void read();
 }

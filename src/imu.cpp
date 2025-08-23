@@ -2,14 +2,14 @@
 
 #include "imu.h"
 
-namespace IMU
+namespace IMUmodule
 {
     Bmi088 imu(SPI, IMU_CS_ACCEL, IMU_CS_GYRO);
 
     bool init()
     {
-        pinMode(IMU_CS_ACCEL, OUTPUT); digitalWrite(IMU_CS_GYRO, HIGH);
-        pinMode(IMU_CS_GYRO, OUTPUT); digitalWrite(IMU_CS_GYRO, HIGH);
+        pinMode(CS_ACCEL, OUTPUT); digitalWrite(CS_GYRO, HIGH);
+        pinMode(CS_GYRO, OUTPUT); digitalWrite(CS_GYRO, HIGH);
         if (imu.begin() != 0) return false;
         
         imu.setRange(Bmi088::ACCEL_RANGE_12G, Bmi088::GYRO_RANGE_250DPS);
