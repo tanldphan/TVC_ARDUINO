@@ -1,10 +1,10 @@
-// Bosch BMI088 Shuttle Board 3.0 Flyer
+// Bosch BMI088 Shuttle Board 3.0
 
 #include "imu.h"
 
 namespace IMUmodule
 {
-    Bmi088 imu(SPI, IMU_CS_ACCEL, IMU_CS_GYRO);
+    Bmi088 imu(SPI, CS_ACCEL, CS_GYRO);
 
     bool init()
     {
@@ -20,8 +20,11 @@ namespace IMUmodule
     void read()
     {
         imu.readSensor();
+        a_x = imu.getAccelX_mss(); g_x = imu.getGyroX_rads();
+        a_y = imu.getAccelY_mss(); g_y = imu.getGyroY_rads();
+        a_z = imu.getAccelZ_mss(); g_z = imu.getGyroZ_rads();
+
         Serial.printf("a: %.2f %.2f %.2f | g: %.2f %.2f %.2f\n",
-        imu.getAccelX_mss(), imu.getAccelY_mss(), imu.getAccelZ_mss(),
-        imu.getGyroX_rads(), imu.getGyroY_rads(), imu.getGyroZ_rads());
+            a_x, a_y, a_z, g_x, g_y, g_z);
     }
 }

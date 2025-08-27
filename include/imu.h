@@ -7,10 +7,18 @@
 
 namespace IMUmodule
 {
+    extern Bmi088 imu;
+
     static constexpr uint8_t CS_ACCEL = 10;
     static constexpr uint8_t CS_GYRO  = 9;
 
-    extern Bmi088 imu;
+    float a_x;
+    float a_y;
+    float a_z;
+
+    float g_x;
+    float g_y;
+    float g_z;
 
     bool init();
     void read();

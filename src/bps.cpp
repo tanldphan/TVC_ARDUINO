@@ -5,7 +5,7 @@
 namespace BPSmodule
 {
 	Adafruit_BMP3XX bps;
-	float p_start = 0.0f;
+
 	bool init()
 	{
 		if (!bps.begin_SPI(CS, SCK, SDO, SDA, 4000000)) return false;
@@ -15,19 +15,26 @@ namespace BPSmodule
 		bps.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_15);
 		bps.setOutputDataRate(BMP3_ODR_50_HZ);
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 10; i++) // scrap
 		{
 			bps.performReading();
-			delay(50);
+			delay(250);
 		}
-		p_start = bps.pressure;
+		p0 = bps.pressure;
 		return true;
 	}
 
 	void read()
 	{
 		bps.performReading();
-		float r_alt = 44330.0f * (1.0f - powf(bps.pressure/p_start, 0.1903f));
-		Serial.printf("Temp: %.2f | Pres: %.2f | r_alt: %.2f | ", bps.temperature, bps.pressure, r_alt);
+		p = bps.pressure;
+		temp = bps.temperature;
+		alt_r = convert(p, p0);
+		Serial.printf("Temp: %.2f | Pres: %.2f | alt_r: %.2f | ", temp, p, alt_r);
+	}
+
+	float convert(float pressure_mmhg, float pressure0_mmhg)
+	{
+		return 44330.0f * (1.0f - powf(pressure_mmhg/ pressure0_mmhg, 0.1903f));
 	}
 }
