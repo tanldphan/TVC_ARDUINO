@@ -5,20 +5,23 @@
 #include <stdint.h>
 #include "BMI088.h"
 
-namespace IMUmodule
+namespace imu_spi
 {
     extern Bmi088 imu;
 
-    static constexpr uint8_t CS_ACCEL = 10;
-    static constexpr uint8_t CS_GYRO  = 9;
+    static constexpr uint8_t SCK = 33;
+    static constexpr uint8_t SDO = 34;
+    static constexpr uint8_t SDI = 35;
+    static constexpr uint8_t CS_ACCEL = 36;
+    static constexpr uint8_t CS_GYRO  = 37;
 
-    float a_x;
-    float a_y;
-    float a_z;
+    extern float a_x;
+    extern float a_y;
+    extern float a_z;
 
-    float g_x;
-    float g_y;
-    float g_z;
+    extern float g_x;
+    extern float g_y;
+    extern float g_z;
 
     bool init();
     void read();

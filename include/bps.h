@@ -5,21 +5,21 @@
 #include <stdint.h>
 #include "Adafruit_BMP3XX.h"
 
-namespace BPSmodule
+namespace bps_spi
 {
     extern Adafruit_BMP3XX bps;
 
-    static constexpr uint8_t SCK = 36;
-    static constexpr uint8_t SDO = 35;
-    static constexpr uint8_t SDA = 34;
-    static constexpr uint8_t CS = 33;
+    static constexpr uint8_t SCK = 32;
+    static constexpr uint8_t SDO = 31;
+    static constexpr uint8_t SDI = 30;
+    static constexpr uint8_t CS = 29;
 
-    float p0;
-    float p;
-    float alt_r;
-    float temp;
+    extern float p0;
+    extern float p;
+    extern float alt_r;
+    extern float temp;
 
     bool init (void);
     void read (void);
-    float convert(float pressure_mmhg, float pressure0_mmhg);
+    float convert(float hpa, float hpa0);
 }

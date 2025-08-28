@@ -2,13 +2,18 @@
 
 #include "bps.h"
 
-namespace BPSmodule
+namespace bps_spi
 {
 	Adafruit_BMP3XX bps;
 
+	float p0;
+	float p;
+	float alt_r;
+	float temp;
+
 	bool init()
 	{
-		if (!bps.begin_SPI(CS, SCK, SDO, SDA, 4000000)) return false;
+		if (!bps.begin_SPI(CS, SCK, SDO, SDI, 4000000)) return false;
 
 		bps.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
 		bps.setPressureOversampling(BMP3_OVERSAMPLING_8X);
@@ -33,8 +38,8 @@ namespace BPSmodule
 		Serial.printf("Temp: %.2f | Pres: %.2f | alt_r: %.2f | ", temp, p, alt_r);
 	}
 
-	float convert(float pressure_mmhg, float pressure0_mmhg)
+	float convert(float hpa, float hpa0)
 	{
-		return 44330.0f * (1.0f - powf(pressure_mmhg/ pressure0_mmhg, 0.1903f));
+		return 44330.0f * (1.0f - powf(hpa / hpa0, 0.1903f));
 	}
 }

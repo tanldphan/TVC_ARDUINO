@@ -2,7 +2,7 @@
 #include <Arduino.h>
 #include "xyservo.h"
 
-namespace ServoControl
+namespace servo_pwm
 {
     Servo servo_x;
     Servo servo_y;

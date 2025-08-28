@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <string.h>
 #include <TeensyThreads.h>
+#include <string.h>
 
 #include "imu.h"
 #include "bps.h"
@@ -14,40 +14,43 @@ void setup()
     while (!Serial && millis() < 3000) {}
     Serial.println("Booting...");
     SPI.begin();
+    KalmanFilter::Kalman kf;
+    KalmanFilter::init(kf, 0.f,0.f,0.f,0.f,0.f,0.f,0.f);
 
-    initializer("IMU", IMUmodule::init);
-    initializer("BPS", BPSmodule::init);
+    initializer("IMU", imu_spi::init);
+    initializer("BPS", bps_spi::init);
 
 }
 
 void loop()
 {
-    ServoControl::servo_x.write(90);
-    ServoControl::servo_y.write(90);
+    servo_pwm::servo_x.write(90);
+    servo_pwm::servo_y.write(90);
     delay(1000);
-    ServoControl::servo_x.write(180);
-    ServoControl::servo_y.write(180);
+    servo_pwm::servo_x.write(180);
+    servo_pwm::servo_y.write(180);
     delay(1000);
-    ServoControl::servo_x.write(270);
-    ServoControl::servo_y.write(270);
+    servo_pwm::servo_x.write(270);
+    servo_pwm::servo_y.write(270);
     delay(1000);
-    ServoControl::servo_x.write(0);
-    ServoControl::servo_y.write(0);
+    servo_pwm::servo_x.write(0);
+    servo_pwm::servo_y.write(0);
+    //imu_spi::read();
 
-    BPSmodule::alt_r;
-    BPSmodule::p;
-    BPSmodule::p0;
-    BPSmodule::temp;
+    // bps_spi::alt_r;
+    // bps_spi::p;
+    // bps_spi::p0;
+    // bps_spi::temp;
 
-    IMUmodule::a_x;
+    // imu_spi::a_x;
 }
 
-void worker()
-{
-    while(1)
-    {
-        IMUmodule::read;
-        BPSmodule::read;
-        delay(250);
-    }
-}
+// void worker()
+// {
+//     while(1)
+//     {
+//         imu_spi::read;
+//         bps_spi::read;
+//         delay(250);
+//     }
+// }

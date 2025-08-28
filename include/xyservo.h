@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <Servo.h> // Arduino's
 
-namespace ServoControl
+namespace servo_pwm
 {
     static constexpr uint8_t SERVO_X_GPIO = 5;
     static constexpr uint8_t SERVO_Y_GPIO = 19;
