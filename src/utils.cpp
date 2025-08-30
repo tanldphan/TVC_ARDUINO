@@ -4,9 +4,9 @@ bool initializer(const char *name, bool (*initee)())
 {
     if (!initee())
     {
-        Serial.printf("%s failed to start./n", name);
+        Serial.printf("%s failed to start.\n", name);
         return false;
     }
-    Serial.printf("%s started successfully", name);
+    Serial.printf("%s started successfully!\n", name);
     return true;
 }

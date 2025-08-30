@@ -24,18 +24,20 @@ void setup()
 
 void loop()
 {
-    servo_pwm::servo_x.write(90);
-    servo_pwm::servo_y.write(90);
-    delay(1000);
-    servo_pwm::servo_x.write(180);
-    servo_pwm::servo_y.write(180);
-    delay(1000);
-    servo_pwm::servo_x.write(270);
-    servo_pwm::servo_y.write(270);
-    delay(1000);
-    servo_pwm::servo_x.write(0);
-    servo_pwm::servo_y.write(0);
-    //imu_spi::read();
+    // servo_pwm::servo_x.write(90);
+    // servo_pwm::servo_y.write(90);
+    // delay(1000);
+    // servo_pwm::servo_x.write(180);
+    // servo_pwm::servo_y.write(180);
+    // delay(1000);
+    // servo_pwm::servo_x.write(270);
+    // servo_pwm::servo_y.write(270);
+    // delay(1000);
+    // servo_pwm::servo_x.write(0);
+    // servo_pwm::servo_y.write(0);
+    imu_spi::read();
+    bps_spi::read();
+    delay(250);
 
     // bps_spi::alt_r;
     // bps_spi::p;
