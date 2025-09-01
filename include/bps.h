@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include "Adafruit_BMP3XX.h"
 
-namespace bps_spi
+namespace bps_
 {
     extern Adafruit_BMP3XX bps;
 

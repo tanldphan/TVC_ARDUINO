@@ -2,7 +2,7 @@
 
 #include "bps.h"
 
-namespace bps_spi
+namespace bps_
 {
 	Adafruit_BMP3XX bps;
 

@@ -1,19 +1,19 @@
-// Bosch BMI088 Shuttle Board 3.0 Flyer
+// Bosch BMI088 Shuttle Board 3.0
 
 #pragma once
 
 #include <stdint.h>
 #include "BMI088.h"
 
-namespace imu_spi
+namespace imu_
 {
-    // static constexpr uint8_t SCK = 33;
-    // static constexpr uint8_t SDO = 34;
-    // static constexpr uint8_t SDI = 35;
-    static constexpr uint8_t CS_ACCEL = 36;
-    static constexpr uint8_t CS_GYRO  = 37;
+    // static constexpr uint8_t SCK = 13;
+    // static constexpr uint8_t SDO = 12;
+    // static constexpr uint8_t SDI = 11;
+    static constexpr uint8_t CS = 10;
 
-    extern Bmi088 imu;
+    extern Bmi088Accel accel;
+    extern Bmi088Gyro gyro;
 
     extern float a_x;
     extern float a_y;
